@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA - Ritesh Singh</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: #f5f8ff;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(60, 80, 180, 0.08);
+            padding: 0;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .container:hover {
+            box-shadow: 0 16px 48px rgba(60, 80, 180, 0.18);
+            transform: translateY(-4px) scale(1.01);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 40px 0 40px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #222;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            padding-bottom: 4px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: #3b6ef6;
+            border-bottom: 2px solid #3b6ef6;
+        }
+
+        .main-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 40px 60px 40px;
+        }
+
+        .intro {
+            max-width: 500px;
+        }
+
+        .intro h2 {
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .intro h2 .highlight {
+            color: #3b6ef6;
+        }
+
+        .intro p {
+            font-size: 1.3em;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .leetcode-details {
+            background: #f5f8ff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(60, 80, 180, 0.06);
+        }
+
+        .leetcode-details {
+            background: #f5f8ff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(60, 80, 180, 0.06);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .leetcode-details:hover {
+            box-shadow: 0 8px 24px rgba(60, 80, 180, 0.18);
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        .leetcode-details li span:hover {
+            background: #e3eaff;
+            color: #3b6ef6;
+            border-radius: 4px;
+            padding: 2px 6px;
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+
+        .contest-details {
+            background: #f5f8ff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(60, 80, 180, 0.06);
+        }
+
+        .contest-details h3 {
+            margin-top: 0;
+            color: #3b6ef6;
+        }
+
+        .contest-details ul {
+            list-style: none;
+            padding: 0;
+            font-size: 1.1em;
+        }
+
+        .contest-details li {
+            margin-bottom: 8px;
+        }
+
+        .profile-art {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #3b6ef6;
+            border-radius: 50% 45% 50% 55% / 60% 50% 60% 50%;
+            z-index: 1;
+        }
+
+        .profile-photo {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid #fff;
+            box-shadow: 0 4px 24px rgba(60, 80, 180, 0.10);
+            z-index: 2;
+            background: #fff;
+        }
+
+        #contestChart {
+            margin-top: 24px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(60, 80, 180, 0.06);
+            padding: 16px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        @media (max-width: 900px) {
+            .main-section {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 40px 20px;
+            }
+
+            .profile-art {
+                margin-top: 40px;
+                margin-bottom: 20px;
+            }
+
+            #contestChart {
+                max-width: 100%;
+            }
+        }
+    </style>
+    <!-- Chart.js for contest graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">Ritesh Singh</div>
+            <div class="nav-links">
+                <a href="portfolio.html">Home</a>
+                <a href="project.html">Projects</a>
+                <a href="dsa.html" class="active">DSA</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+        <div class="main-section">
+            <div class="intro">
+                <h2>
+                    DSA
+                </h2>
+                <p>
+                    Discover my work and achievements in Data Structures & Algorithms.
+                </p>
+                <div class="leetcode-details" id="leetcode-details">
+                    <h3>LeetCode Stats</h3>
+                    <ul>
+                        <li><strong>Total Problems Solved:</strong> <span id="totalSolved">Loading...</span></li>
+                        <li><strong>Easy:</strong> <span id="easySolved">Loading...</span></li>
+                        <li><strong>Medium:</strong> <span id="mediumSolved">Loading...</span></li>
+                        <li><strong>Hard:</strong> <span id="hardSolved">Loading...</span></li>
+                    </ul>
+                </div>
+                <div class="contest-details" id="contest-details">
+                    <h3>LeetCode Contest Stats</h3>
+                    <ul>
+                        <li><strong>Contests Given:</strong> <span id="contestCount">Loading...</span></li>
+                        <li><strong>Current Rating:</strong> <span id="contestRating">Loading...</span></li>
+                    </ul>
+                    <canvas id="contestChart" width="400" height="220"></canvas>
+                </div>
+            </div>
+            <div class="profile-art">
+                <div class="profile-bg"></div>
+                <img src="profile.jpg" alt="Ritesh Singh Photo" class="profile-photo">
+            </div>
+        </div>
+    </div>
+    <script>
+        // Use your actual LeetCode username
+        const username = 'Ritesh_Singh27';
+
+        async function fetchLeetCodeStats() {
+            try {
+                const response = await fetch(`https://leetcode-stats-api.herokuapp.com/${username}`);
+                if (!response.ok) throw new Error('API error');
+                const data = await response.json();
+                document.getElementById('totalSolved').textContent = data.totalSolved ?? 'N/A';
+                document.getElementById('easySolved').textContent = data.easySolved ?? 'N/A';
+                document.getElementById('mediumSolved').textContent = data.mediumSolved ?? 'N/A';
+                document.getElementById('hardSolved').textContent = data.hardSolved ?? 'N/A';
+
+                // Contest details
+                document.getElementById('contestCount').textContent = data.contestAttended ?? 'N/A';
+                const rating = data.rating ?? 'N/A'; // Use nullish coalescing operator
+                document.getElementById('contestRating').textContent = rating;
+
+                // Contest graph
+                if (data.contestHistory && Array.isArray(data.contestHistory) && data.contestHistory.length > 0) {
+                    console.log('Contest History:', data.contestHistory); // Add this line
+                    const labels = data.contestHistory.map((c, i) => `#${i + 1}`);
+                    const ratings = data.contestHistory.map(c => c.rating);
+                    const ctx = document.getElementById('contestChart').getContext('2d');
+                    if (ctx) {
+                        new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Contest Rating',
+                                    data: ratings,
+                                    borderColor: '#3b6ef6',
+                                    backgroundColor: 'rgba(59,110,246,0.08)',
+                                    fill: true,
+                                    tension: 0.3,
+                                    pointRadius: 3,
+                                    pointBackgroundColor: '#3b6ef6'
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Contest'
+                                        }
+                                    },
+                                    y: {
+                                        title: {
+                                            display: true,
+                                            text: 'Rating'
+                                        },
+                                        beginAtZero: false
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        const contestChart = document.getElementById('contestChart');
+                        if (contestChart) {
+                            contestChart.style.display = 'none';
+                        }
+                    }
+                } else {
+                    const contestChart = document.getElementById('contestChart');
+                    if (contestChart) {
+                        contestChart.style.display = 'none';
+                    }
+                }
+            } catch (error) {
+                document.getElementById('totalSolved').textContent = 'N/A';
+                document.getElementById('easySolved').textContent = 'N/A';
+                document.getElementById('mediumSolved').textContent = 'N/A';
+                document.getElementById('hardSolved').textContent = 'N/A';
+                document.getElementById('contestCount').textContent = 'N/A';
+                document.getElementById('contestRating').textContent = 'N/A';
+                document.getElementById('contestChart').style.display = 'none';
+            }
+        }
+
+        fetchLeetCodeStats();
+    </script>
+</body>
+
+</html>

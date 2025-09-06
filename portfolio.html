@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritesh Singh - Portfolio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: #f5f8ff;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(60,80,180,0.08);
+            padding: 0;
+            padding: 0;transition: box-shadow 0.3s, transform 0.3s;
+        }
+        
+        .container:hover {
+            box-shadow: 0 16px 48px rgba(60,80,180,0.18);
+            transform: translateY(-4px) scale(1.01);}
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 40px 0 40px;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #222;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1em;
+            padding-bottom: 4px;
+            transition: color 0.2s;
+        }
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: #3b6ef6;
+            border-bottom: 2px solid #3b6ef6;
+        }
+        .main-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 40px 60px 40px;
+        }
+        .intro {
+            max-width: 500px;
+        }
+        .intro h2 {
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            color: #222;
+        }
+        .intro h2 .highlight {
+            color: #3b6ef6;
+        }
+        .intro p {
+            font-size: 1.3em;
+            color: #444;
+            margin-bottom: 30px;
+        }
+        .contact-btn {
+            background: #3b6ef6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 32px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(60,80,180,0.08);
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .contact-btn:hover {
+            background: #274bb5;
+        }
+        .profile-art {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .profile-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #3b6ef6;
+            border-radius: 50% 45% 50% 55% / 60% 50% 60% 50%;
+            z-index: 1;
+        }
+        .profile-photo {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid #fff;
+            box-shadow: 0 4px 24px rgba(60,80,180,0.10);
+            z-index: 2;
+            background: #fff;
+            padding: 0;transition: box-shadow 0.3s, transform 0.3s;
+        }
+        
+        .profile-photo:hover {
+            box-shadow: 0 16px 48px rgba(60,80,180,0.18);
+            transform: translateY(-4px) scale(1.01);}
+        .socials {
+            margin-top: 40px;
+            display: flex;
+            gap: 24px;
+        }
+        .socials a {
+            color: #222;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .socials a:hover {
+            color: #3b6ef6;
+        }
+        @media (max-width: 900px) {
+            .main-section {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 40px 20px;
+            }
+            .profile-art {
+                margin-top: 40px;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">Ritesh Singh</div>
+            <div class="nav-links">
+                <a href="portfolio.html" class="active">Home</a>
+                <a href="project.html">Projects</a>
+                <a href="dsa.html">DSA</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+        <div class="main-section">
+            <div class="intro">
+                <h2>
+                    Hi,<br>
+                    I'm <span class="highlight">Ritesh Singh</span><br>
+                    Full Stack & DSA Developer
+                </h2>
+                <p>
+                    I build modern web applications and solve complex data structure & algorithm problems.
+                </p>
+                <a href="contact.html" class="contact-btn">Contact</a>
+                <div class="socials">
+                    <a href="https://linkedin.com/in/ritesh-singh-8401b1286" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.codechef.com/users/ritesh_singh9" target="_blank" title="CodeChef">
+                        <img src="https://cdn.codechef.com/images/cc-logo.svg" alt="CodeChef" style="height:1.5em;vertical-align:middle;">
+                    </a>
+                    <a href="#" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="profile-art">
+                <div class="profile-bg"></div>
+                <img src="profile.jpg" alt="Ritesh Singh Photo" class="profile-photo">
+            </div>
+        </div>

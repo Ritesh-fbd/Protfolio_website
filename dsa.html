@@ -183,6 +183,20 @@
             max-width: 400px;
         }
 
+        /* Added: LeetCode logo styling */
+        .leetcode-logo {
+            width: 22px;
+            height: 22px;
+            vertical-align: middle;
+            margin-right: 8px;
+            filter: grayscale(0) brightness(0.95);
+            transition: transform 0.15s;
+        }
+
+        .leetcode-logo:hover {
+            transform: scale(1.08);
+        }
+
         @media (max-width: 900px) {
             .main-section {
                 flex-direction: column;
@@ -212,6 +226,7 @@
                 <a href="portfolio.html">Home</a>
                 <a href="project.html">Projects</a>
                 <a href="dsa.html" class="active">DSA</a>
+                <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
         </nav>
@@ -224,7 +239,12 @@
                     Discover my work and achievements in Data Structures & Algorithms.
                 </p>
                 <div class="leetcode-details" id="leetcode-details">
-                    <h3>LeetCode Stats</h3>
+                    <h3>
+                        <a href="https://leetcode.com/Ritesh_Singh27/" target="_blank" rel="noopener noreferrer" title="LeetCode Profile" style="text-decoration:none;color:inherit;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" alt="LeetCode" class="leetcode-logo">
+                            LeetCode Stats
+                        </a>
+                    </h3>
                     <ul>
                         <li><strong>Total Problems Solved:</strong> <span id="totalSolved">Loading...</span></li>
                         <li><strong>Easy:</strong> <span id="easySolved">Loading...</span></li>

@@ -1,142 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Ritesh Singh</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            background: #f5f8ff;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(60,80,180,0.08);
-            padding: 0;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 40px 0 40px;
-        }
-        .logo {
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #222;
-            letter-spacing: 1px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        .nav-links a {
-            color: #222;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1em;
-            padding-bottom: 4px;
-            transition: color 0.2s;
-        }
-        .nav-links a.active,
-        .nav-links a:hover {
-            color: #3b6ef6;
-            border-bottom: 2px solid #3b6ef6;
-        }
-        .main-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 60px 40px 60px 40px;
-        }
-        .intro {
-            max-width: 500px;
-        }
-        .intro h2 {
-            font-size: 2.5em;
-            margin: 0 0 10px 0;
-            font-weight: 700;
-            color: #222;
-        }
-        .intro h2 .highlight {
-            color: #3b6ef6;
-        }
-        .intro p {
-            font-size: 1.3em;
-            color: #444;
-            margin-bottom: 30px;
-        }
-        .profile-art {
-            position: relative;
-            width: 320px;
-            height: 320px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .profile-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #3b6ef6;
-            border-radius: 50% 45% 50% 55% / 60% 50% 60% 50%;
-            z-index: 1;
-        }
-        .profile-photo {
-            position: relative;
-            width: 220px;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 8px solid #fff;
-            box-shadow: 0 4px 24px rgba(60,80,180,0.10);
-            z-index: 2;
-            background: #fff;
-        }
-        @media (max-width: 900px) {
-            .main-section {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 40px 20px;
-            }
-            .profile-art {
-                margin-top: 40px;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Ritesh Singh</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: #f5f8ff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(60,80,180,0.08);
+      padding: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 40px 0 40px;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #222;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #222;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1em;
+      padding-bottom: 4px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: #3b6ef6;
+      border-bottom: 2px solid #3b6ef6;
+    }
+
+    .main-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 40px 20px 40px;
+    }
+
+    .intro {
+      max-width: 500px;
+    }
+
+    .intro h2 {
+      font-size: 2.5em;
+      margin: 0 0 10px 0;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .intro p {
+      font-size: 1.3em;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    .profile-art {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #3b6ef6;
+      border-radius: 50% 45% 50% 55% / 60% 50% 60% 50%;
+      z-index: 1;
+    }
+
+    .profile-photo {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 8px solid #fff;
+      box-shadow: 0 4px 24px rgba(60,80,180,0.10);
+      z-index: 2;
+      background: #fff;
+    }
+
+    /* Project Cards Section */
+    #projects {
+      padding: 40px;
+    }
+
+    #projects h2 {
+      font-size: 2em;
+      color: #3b6ef6;
+      margin-bottom: 20px;
+    }
+
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: #f5f8ff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+      color: #222;
+    }
+
+    .project-card p {
+      color: #555;
+      font-size: 1em;
+      margin: 10px 0 15px;
+    }
+
+    .project-card a {
+      display: inline-block;
+      margin-right: 10px;
+      margin-top: 10px;
+      padding: 8px 14px;
+      background: #3b6ef6;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: background 0.3s;
+    }
+
+    .project-card a:hover {
+      background: #2a4ecb;
+    }
+
+    @media (max-width: 900px) {
+      .main-section {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 20px;
+      }
+      .profile-art {
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <nav>
-            <div class="logo">Ritesh Singh</div>
-            <div class="nav-links">
-                <a href="portfolio.html">Home</a>
-                <a href="project.html" class="active">Projects</a>
-                <a href="dsa.html">DSA</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-            </div>
-        </nav>
-        <div class="main-section">
-            <div class="intro">
-                <h2>
-                    Projects
-                </h2>
-                <p>
-                    Explore my web development and DSA projects below.
-                </p>
-                <!-- Add your project details here -->
-            </div>
-            <div class="profile-art">
-                <div class="profile-bg"></div>
-                <img src="profile.jpg" alt="Ritesh Singh Photo" class="profile-photo">
-            </div>
-        </div>
+  <div class="container">
+    <nav>
+      <div class="logo">Ritesh Singh</div>
+      <div class="nav-links">
+        <a href="portfolio.html">Home</a>
+        <a href="project.html" class="active">Projects</a>
+        <a href="dsa.html">DSA</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <div class="main-section">
+      <div class="intro">
+        <h2>Projects</h2>
+        <p>Explore my web development and DSA projects below.</p>
+      </div>
+      <div class="profile-art">
+        <div class="profile-bg"></div>
+        <img src="profile.jpg" alt="Ritesh Singh Photo" class="profile-photo">
+      </div>
     </div>
+
+    <!-- Project Showcase Section -->
+    <section id="projects">
+      <div class="project-list">
+
+        <div class="project-card">
+          <h3>📚 Book Store App</h3>
+          <p>A MERN stack web app with user authentication and responsive design.</p>
+          <a href="https://github.com/yourusername/book-store" target="_blank">View Code</a>
+          <a href="https://bookstore-demo.vercel.app" target="_blank">Live Demo</a>
+        </div>
+
+        <div class="project-card">
+          <h3>💹 Stock Insights App</h3>
+          <p>A website that shows stocks at all-time highs/lows and suggests high-return picks.</p>
+          <a href="https://github.com/yourusername/stock-insights" target="_blank">View Code</a>
+          <a href="#" target="_blank">Live Demo</a>
+        </div>
+
+        <div class="project-card">
+          <h3>🌐 Portfolio Website</h3>
+          <p>The website you are currently visiting, built with HTML, CSS, and JavaScript.</p>
+          <a href="https://github.com/yourusername/portfolio" target="_blank">View Code</a>
+        </div>
+
+      </div>
+    </section>
+  </div>
 </body>
 </html>

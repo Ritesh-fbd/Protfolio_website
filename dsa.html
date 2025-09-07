@@ -197,6 +197,81 @@
             transform: scale(1.08);
         }
 
+        /* Added: DSA topics styling */
+        .dsa-topics {
+            background: #f7fbff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 18px;
+            box-shadow: 0 4px 12px rgba(60, 80, 180, 0.04);
+        }
+
+        .dsa-topics h3 {
+            margin: 0 0 10px;
+            color: #3b6ef6;
+        }
+
+        .dsa-topics .controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .topic-input {
+            flex: 1;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #dbe7ff;
+            font-size: 0.95em;
+            background: #fff;
+        }
+
+        .topic-btn {
+            background: #3b6ef6;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95em;
+        }
+
+        .topic-btn.secondary {
+            background: #eef6ff;
+            color: #274bb5;
+            border: 1px solid rgba(59, 110, 246, 0.12);
+        }
+
+        .dsa-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 8px;
+        }
+
+        .dsa-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #eef6ff;
+        }
+
+        .topic-text {
+            flex: 1;
+            margin-right: 12px;
+            font-size: 0.98em;
+            color: #223;
+        }
+
+        .topic-actions {
+            display: flex;
+            gap: 6px;
+        }
+
         @media (max-width: 900px) {
             .main-section {
                 flex-direction: column;
@@ -253,10 +328,6 @@
                     </ul>
                 </div>
                 <div class="contest-details" id="contest-details">
-                    <a href="https://leetcode.com/Ritesh_Singh27/" target="_blank" rel="noopener noreferrer" title="LeetCode Profile" style="text-decoration:none;color:inherit;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" alt="LeetCode" class="leetcode-logo">
-                            LeetCode Stats
-                        </a>
                     <h3>LeetCode Contest Stats</h3>
                     <ul>
                         <li><strong>Contests Given:</strong> <span id="contestCount">Loading...</span></li>
@@ -264,6 +335,18 @@
                     </ul>
                     <canvas id="contestChart" width="400" height="220"></canvas>
                 </div>
+
+                <!-- Added: DSA Topics (editable, persisted to localStorage) -->
+                <div class="dsa-topics" id="dsaTopicsSection">
+                    <h3>DSA Topics</h3>
+                    <div class="controls">
+                        <input id="newTopic" class="topic-input" type="text" placeholder="Add new topic (e.g. Arrays)" />
+                        <button id="addTopicBtn" class="topic-btn">Add</button>
+                    </div>
+                    <ul id="dsaList" class="dsa-list" aria-live="polite"></ul>
+                    <small style="color:#6b7280;display:block;margin-top:8px;">Click Edit to modify a topic. Changes saved locally in your browser.</small>
+                </div>
+
             </div>
             <div class="profile-art">
                 <div class="profile-bg"></div>
@@ -360,6 +443,106 @@
         }
 
         fetchLeetCodeStats();
+
+        // Added: DSA topics management (persisted in localStorage)
+        (function () {
+            const STORAGE_KEY = 'dsaTopics_v1';
+            const defaults = [
+                'Arrays', 'Strings', 'Linked Lists',
+                'Stacks & Queues', 'Trees', 'Graphs',
+                'Dynamic Programming', 'Greedy Algorithms',
+                'Sorting & Searching', 'Hashing'
+            ];
+
+            const el = {
+                list: document.getElementById('dsaList'),
+                addBtn: document.getElementById('addTopicBtn'),
+                newInput: document.getElementById('newTopic')
+            };
+
+            function load() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    return raw ? JSON.parse(raw) : defaults.slice();
+                } catch {
+                    return defaults.slice();
+                }
+            }
+            function save(arr) { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
+
+            function render() {
+                const topics = load();
+                el.list.innerHTML = '';
+                topics.forEach((t, i) => {
+                    const li = document.createElement('li');
+                    const span = document.createElement('span');
+                    span.className = 'topic-text';
+                    span.textContent = t;
+                    span.contentEditable = 'false';
+                    span.spellcheck = false;
+
+                    const actions = document.createElement('div');
+                    actions.className = 'topic-actions';
+
+                    const edit = document.createElement('button');
+                    edit.className = 'topic-btn secondary';
+                    edit.type = 'button';
+                    edit.textContent = 'Edit';
+
+                    const del = document.createElement('button');
+                    del.className = 'topic-btn';
+                    del.type = 'button';
+                    del.textContent = 'Delete';
+
+                    edit.addEventListener('click', () => {
+                        const editing = span.getAttribute('data-editing') === '1';
+                        if (!editing) {
+                            span.contentEditable = 'true';
+                            span.focus();
+                            span.setAttribute('data-editing', '1');
+                            edit.textContent = 'Save';
+                        } else {
+                            span.contentEditable = 'false';
+                            span.removeAttribute('data-editing');
+                            edit.textContent = 'Edit';
+                            const topics = load();
+                            topics[i] = span.textContent.trim() || 'Untitled Topic';
+                            save(topics);
+                            render();
+                        }
+                    });
+
+                    del.addEventListener('click', () => {
+                        if (!confirm(`Remove topic: "${t}" ?`)) return;
+                        const topics = load();
+                        topics.splice(i, 1);
+                        save(topics);
+                        render();
+                    });
+
+                    actions.appendChild(edit);
+                    actions.appendChild(del);
+                    li.appendChild(span);
+                    li.appendChild(actions);
+                    el.list.appendChild(li);
+                });
+            }
+
+            function addFromInput() {
+                const v = (el.newInput.value || '').trim();
+                if (!v) return;
+                const topics = load();
+                topics.unshift(v);
+                save(topics);
+                el.newInput.value = '';
+                render();
+            }
+
+            el.addBtn.addEventListener('click', addFromInput);
+            el.newInput.addEventListener('keydown', e => { if (e.key === 'Enter') addFromInput(); });
+
+            render();
+        })();
     </script>
 </body>
 
